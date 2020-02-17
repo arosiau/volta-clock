@@ -1,12 +1,10 @@
 import asyncio
 import json
-import logging
 import websockets
 import threading
 import moment
-from datetime import datetime
 
-
+#User class
 class User:
     def __init__(self, websocket):
         self.websocket = websocket
@@ -29,41 +27,33 @@ class User:
         return trigger
 
 
+# set of Users
 USERS = set()
 
-
-async def broadcastTime():
-    if USERS:  # asyncio.wait doesn't accept an empty list
-        for u in USERS:
-            await asyncio.wait(u.websocket.send("test"))
-
-
-async def unregister(user):
-    USERS.remove(user)
-
-
 async def clock(websocket, path):
-    # register(websocket) sends user_event() to websocket
-
+    # create a user
     user = User(websocket)
-
     try:
+
         async for message in websocket:
             data = json.loads(message)
+            # if timezone specified change it
             if 'timezone' in data:
                 user.timezone = data["timezone"]
                 USERS.add(user)
+            # if alarm specified add it
             elif 'alarm' in data:
                 user.addAlarm(data["alarm"])
     finally:
+        # remove user from the set
         USERS.remove(user)
 
-
-async def broadcast():
+# broadcast loop to send time to users and check alarms
+async def broadcast_loop():
     while True:
-
+        #for each user 
         for u in USERS:
-
+            # broadcast time based on user timezone
             await asyncio.gather(
                 *[u.websocket.send(u.getTime())],
                 return_exceptions=False,
@@ -76,7 +66,7 @@ async def broadcast():
                 )
         await asyncio.sleep(0.1)
 
-asyncio.get_event_loop().create_task(broadcast())
+asyncio.get_event_loop().create_task(broadcast_loop())
 
 # starting the server
 start_server = websockets.serve(clock, "localhost", 8081)

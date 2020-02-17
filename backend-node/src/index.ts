@@ -3,9 +3,10 @@ import Moment from "moment-timezone"
 
 const PORT = 8080
 const server: WebSocket.Server = new WebSocket.Server({ port: PORT })
-let clients: Client[] = []
+let users: User[] = []
 
-class Client {
+// User class
+class User {
     ws: WebSocket
     timezone: string
     alarms: Moment.Moment[] = []
@@ -50,18 +51,19 @@ class Client {
     }
 }
 
+// server
 server.on('connection', function connection(ws) {
     // the timer 
-    let client = new Client(ws, Moment.tz.guess())
-    clients.push(client)
+    let client = new User(ws, Moment.tz.guess())
+    users.push(client)
 });
 
 // global interval
 setInterval(() => {
     
-    clients.forEach(c => {
-        c.sendTime()
-        c.checkAlarm()
+    users.forEach(u => {
+        u.sendTime()
+        u.checkAlarm()
     });
 
 }, 100)
