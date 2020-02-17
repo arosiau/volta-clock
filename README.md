@@ -12,11 +12,11 @@ Clone this project
 git clone https://github.com/arosiau/volta-clock.git
 ```
 
-### Installation & Launch
+## Installation & Launch
 
 This is what you need to launch the Volta Clock
 
-#### backend-python
+### backend-python
 
 You need **Python 3.7+**, and **pipenv**
 
@@ -33,7 +33,7 @@ Now you will normally be able to launch the backend-python
 python clock.py
 ```
 
-#### backend-node
+### backend-node
 
 You need a recent version of **Node.js** and **typescript** globally installed
 
@@ -54,7 +54,7 @@ Let's try to launch it
 npm start
 ```
 
-#### app
+### app
 
 You need a recent version of **Node.js**
 
@@ -71,22 +71,22 @@ Let's try to launch it
 npm start
 ```
 
-### Results
+## Results
 
-You should see something like this
+Now that everything is running, you should see something like this
 
-![You should see something like this](screenshot-clocks.png)
+![You should see something like this](clocks.gif)
 
-### TODO list
+## TODO list
 
 Here is a quick list for each part on what could be improved
 
-#### app
+### app
 
 - Maybe some design :p
 - Add a clock face view to play with html5 canvas and geometry
 - Extend the alarm functionality because for now it's quite poor and is just there for the proof of concept
 
-#### backend-node
+### backend-node
 
-- There might be a memory leak, we have to detect when a client disconnect and remove it from the users array. For now the disconnected user stay in the array and so never garbage collected
+- There might be a memory leak, we have to detect when a client disconnect and remove it from the users array. For now the disconnected user's reference stay in the array and so it's never garbage collected
