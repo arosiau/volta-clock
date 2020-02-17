@@ -1,0 +1,8 @@
+.vscode
+.DS_Store
+
+backend-node/dist
+backend-node/node_modules
+
+app/node_modules
+

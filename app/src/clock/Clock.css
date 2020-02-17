@@ -1,0 +1,40 @@
+.clock {
+  background-color: rgb(43, 43, 43);
+  color: white;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 10px;
+  font-size: 1rem;
+  max-width: 100%;
+}
+
+.language {
+  padding: 10px;
+  border-radius: 5px;
+  color: white;
+  font-weight: 600;
+  margin-right: 10px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+}
+
+.time {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 3rem;
+}
+
+.logs {
+  margin-top: 10px;
+}
+
+.alarm {
+  cursor: pointer;
+  margin-left: auto;
+  height: 2rem;
+}

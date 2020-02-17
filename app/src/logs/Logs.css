@@ -1,0 +1,15 @@
+.logs {
+  background-color: white;
+  color: darkgray;
+  font-weight: 600;
+  border-radius: 5px;
+  padding: 5px;
+  font-size: 0.8rem;
+}
+
+.info {
+  color: rgb(61, 61, 61);
+}
+.error {
+  color: rgb(172, 10, 10)
+}
